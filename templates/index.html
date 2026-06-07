@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Fake News Detection AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="hero">
+
+    <!-- Navbar -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            AI Verify
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#">Technology</a>
+            <a href="#">Detection</a>
+            <a href="#">Analysis</a>
+            <a href="#">Security</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main Content -->
+
+    <div class="hero-content">
+
+        <!-- Left Section -->
+
+        <div class="left">
+
+            <h1>
+                Detect Fake News <br>
+                Using Intelligent AI Analysis
+            </h1>
+
+            <p>
+                Analyze articles and headlines using Machine Learning,
+                NLP, and AI-powered classification models trained
+                on thousands of verified real and fake news samples.
+            </p>
+
+
+            <!-- Form -->
+
+            <form action="/predict" method="post">
+
+                <textarea
+                    name="news"
+                    placeholder="Paste news text OR article URL here..."
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Analyze News
+                </button>
+
+            </form>
+
+
+            <!-- Prediction Result -->
+
+            {% if prediction_text %}
+
+            <div class="result-box {% if 'FAKE' in prediction_text %}fake{% else %}real{% endif %}">
+
+                <h2>{{ prediction_text }}</h2>
+
+
+                <!-- Scores -->
+
+                <div class="scores">
+
+                    <!-- Fake Score -->
+
+                    <div class="score-item">
+
+                        <span>Fake Probability</span>
+
+                        <div class="bar">
+
+                            <div class="fill fake-fill"
+                                 style="width: {{ fake_score }}%">
+                            </div>
+
+                        </div>
+
+                        <p>{{ fake_score }}%</p>
+
+                    </div>
+
+
+                    <!-- Real Score -->
+
+                    <div class="score-item">
+
+                        <span>Real Probability</span>
+
+                        <div class="bar">
+
+                            <div class="fill real-fill"
+                                 style="width: {{ real_score }}%">
+                            </div>
+
+                        </div>
+
+                        <p>{{ real_score }}%</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Authenticity -->
+
+                <div class="authenticity">
+
+                    Authenticity Score:
+                    {{ authenticity }}%
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Right Section -->
+
+        <div class="right">
+
+            <div class="orb"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Feature Cards -->
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>AI Detection</h3>
+
+            <p>
+                Machine learning powered fake news classification.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Fast Analysis</h3>
+
+            <p>
+                Analyze news articles instantly in real time.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>High Accuracy</h3>
+
+            <p>
+                Trained on thousands of verified news articles.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
